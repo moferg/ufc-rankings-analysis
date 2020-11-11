@@ -8,3 +8,30 @@
 # Potential options: duration in rankings (longest/shortest), info of a fighter given fighter's name,
                    # info for a weight class, info for P4P, duration as champ (longest/shortest),
                    # fighters who were champs multiple times, fighters who were champs in multiple weight classes
+
+# Imports
+
+import csv
+
+# Variables created before opening CSV file
+
+date =[]
+weight_class = []
+fighter_name = []
+rank = []
+
+with open('rankings_history.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader:
+        if line_count == 0:
+            print(f'Column names: {", ".join(row)}')
+            line_count += 1
+        else:
+            date.append(row[0])
+            weight_class.append(row[1])
+            fighter_name.append(row[2])
+            rank.append(row[3])
+            line_count +=1
+
+print(f'Successfully processed {line_count} lines.')
