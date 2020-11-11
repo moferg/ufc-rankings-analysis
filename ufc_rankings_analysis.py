@@ -12,6 +12,7 @@
 # Imports
 
 import csv
+import numpy as np
 
 # Variables created before opening CSV file
 
@@ -33,5 +34,11 @@ with open('rankings_history.csv') as csv_file:
             fighter_name.append(row[2])
             rank.append(row[3])
             line_count +=1
+
+with open('rankings_history.csv') as csv_file:
+    csv_dict_reader = csv.DictReader(csv_file)
+    for dicts in csv_dict_reader:
+        if dicts.get('rank') == '0':
+            print(f'{dicts.get("fighter")} was the {dicts.get("weightclass")} champ on {dicts.get("date")}')
 
 print(f'Successfully processed {line_count} lines.')
