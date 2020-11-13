@@ -45,14 +45,17 @@ df = pd.read_csv(filepath)
 # df_name_input = df['fighter'] == name_input
 # print(df[df_name_input])
 
-# menu = ConsoleMenu("Welcome to the UFC Rankings Analyzer and Visualizer!", "Please choose from one of the following selections:")
 selection = SelectionMenu.get_selection(selection_menu_options, title, subtitle)
 selection += 1
 if selection == 1:
-    name_input = input("Please enter a fighter's name to see their rankings on different dates:     ")
+    name_input = input("Please enter a fighter's name to see their rankings on different dates:     ").title()
+    df_name_input = df['fighter'] == name_input
+    print(df[df_name_input].sort_values(by=['weightclass', 'date']))
 elif selection == 2:
-    weightclass_input = input("Please enter the weightclass for which you would like to see the rankings:   ")
+    weightclass_input = input("Please enter the weightclass for which you would like to see the rankings:   ").title()
+    df_wc_input = df['weightclass'] == weightclass_input
+    print(df[df_wc_input])
 elif selection == 3:
     print("Here are the champs of each weight class:")
-# menu.show()
-# menu.join()
+    df_champs = df['rank'] == 0
+    print(df[df_champs])
